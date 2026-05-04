@@ -1,9 +1,8 @@
 # e-Certificate Management System
 
-**Name:** Devarakonda Ashresh Kumar  
-**Roll No:** 4511-22-733-008  
-**Email:** dashreshkumar@gmail.com  
-**Phone:** +91 9391448946
+**Name:** EEGA CHANDRIKA  
+**Roll No:** 4511-22-733-662  
+**Email:** chandrika5mudhiraj@gmail.com  
 
 This is a full-stack web application for managing and issuing digital certificates. It includes user authentication, certificate generation with QR codes, and verification features.
 
