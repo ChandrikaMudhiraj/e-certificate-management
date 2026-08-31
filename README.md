@@ -1,143 +1,175 @@
-# e-Certificate Management System
+# E-Certificate Management System
 
-**Name:** EEGA CHANDRIKA  
-**Roll No:** 4511-22-733-662  
-**Email:** chandrika5mudhiraj@gmail.com  
+This is a web-based E-Certificate Management System that I developed to make the process of creating, managing and verifying certificates easier.
 
-This is a full-stack web application for managing and issuing digital certificates. It includes user authentication, certificate generation with QR codes, and verification features.
+The main idea behind this project is to generate digital certificates with a unique certificate ID and QR code. The QR code can be scanned to verify whether a certificate is valid or not.
 
-## Prerequisites
+## Features
 
-Before running the project, ensure you have the following installed:
-- **Node.js** (version 16 or higher) - Download from [nodejs.org](https://nodejs.org/)
-- **MySQL** (version 8 or higher) - Download from [mysql.com](https://www.mysql.com/)
-- **Git** (for cloning the repository, if needed)
+* User registration and login
+* Certificate creation and management
+* Generate certificates as PDF
+* Unique certificate ID for every certificate
+* QR code generation for certificates
+* Certificate verification using QR code
+* Certificate verification using certificate ID
+* Email and OTP functionality
+* MySQL database for storing certificate and user details
+* Separate frontend and backend
+
+## Technologies Used
+
+### Frontend
+
+* React.js
+* JavaScript
+* HTML
+* CSS
+* Axios
+* React Router
+
+### Backend
+
+* Node.js
+* Express.js
+* REST APIs
+* MySQL
+* Nodemailer
+* Multer
+* QRCode
+* Puppeteer
+* bcrypt
+* Express Session
 
 ## Project Structure
 
-- `backend/` - Server-side code (Node.js, Express)
-- `frontend/` - Client-side code (React.js)
-- `docs/` - Documentation files
-
-## Installation Steps
-
-### 1. Clone or Navigate to the Project Directory
-If not already done, navigate to the project root directory:
+```text
+e-certificate-management/
+│
+├── backend/
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── server.js
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       └── services/
+│
+├── docs/
+├── render.yaml
+└── README.md
 ```
-cd d:\ecerti
+
+## How it works
+
+First, the user can register and log in to the application.
+
+After logging in, certificates can be created by entering the required details. Once a certificate is generated, it gets a unique certificate ID along with a QR code.
+
+The QR code can be scanned to open the verification page. The certificate ID is then checked against the database and the certificate details are displayed if it is valid.
+
+The certificates can also be generated/downloaded as PDF files.
+
+## Running the project locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ChandrikaMudhiraj/e-certificate-management.git
+cd e-certificate-management
 ```
 
-### 2. Install Backend Dependencies
-Navigate to the backend folder and install dependencies:
-```
+### 2. Backend setup
+
+```bash
 cd backend
 npm install
 ```
-**Required Backend Dependencies:**
-- `express` - Web framework
-- `mysql` - Database connector
-- `bcrypt` - Password hashing
-- `nodemailer` - Email sending
-- `puppeteer` - PDF generation
-- `qrcode` - QR code generation
-- `cors`, `dotenv`, `express-session`, `multer`, etc.
 
-### 3. Install Frontend Dependencies
-Navigate to the frontend folder and install dependencies:
-```
-cd ../frontend
-npm install
-```
-**Required Frontend Dependencies:**
-- `react` - UI library
-- `react-router-dom` - Routing
-- `axios` - HTTP client
-- `jspdf` - PDF handling
-- `react-icons` - Icons
-- `@testing-library/react` - Testing utilities
-- `html2canvas`, etc.
+Create a `.env` file in the backend folder and add the required database and email configuration.
 
-### 4. Setup Database
-- Create a MySQL database named `ecerti` (or as per your configuration).
-- Run the database schema scripts from `docs/DATABASE_MODULE.md` or create tables manually for users, certificates, etc.
-- Ensure MySQL server is running.
+Example:
 
-### 5. Configure Environment Variables
-In the `backend/` folder, create a `.env` file with the following variables (replace with your actual values):
-```
+```env
 DB_HOST=localhost
-DB_USER=your_mysql_username
-DB_PASSWORD=your_mysql_password
-DB_DATABASE=database_name
-EMAIL_USER=your_email@gmail.com
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_DATABASE=ecerti
+
+EMAIL_USER=your_email
 EMAIL_PASS=your_email_password
-SESSION_SECRET=your_secret_key
-```
-- `DB_*` - MySQL connection details
-- `EMAIL_*` - For sending emails (e.g., OTP)
-- `SESSION_SECRET` - For session management
 
-## Running the Application
-
-### 1. Start the Backend Server
-In the `backend/` folder:
+SESSION_SECRET=your_secret
 ```
+
+### 3. Database setup
+
+Create a MySQL database and configure the database details in the `.env` file.
+
+```sql
+CREATE DATABASE ecerti;
+```
+
+Use the database/schema files provided in the project to create the required tables.
+
+### 4. Start the backend
+
+```bash
 npm start
 ```
-This starts the server on `http://localhost:5000` (or as configured).
 
-### 2. Start the Frontend Application
-In a new terminal, in the `frontend/` folder:
-```
+### 5. Start the frontend
+
+Open another terminal and run:
+
+```bash
+cd frontend
+npm install
 npm start
 ```
-This starts the React app on `http://localhost:3000`.
 
-### 3. Access the Application
-- Open your browser and go to `http://localhost:3000` to use the frontend.
-- The backend APIs are available at `http://localhost:5000`.
+The application should then be available at:
 
-## Additional Notes
-- Ensure both backend and frontend are running simultaneously.
-- For production, build the frontend with `npm run build` and serve the static files.
-- Refer to `docs/` for detailed module documentation.
-- If you encounter issues, check console logs for errors.
-
-## Testing
-Run tests for the frontend:
+```text
+http://localhost:3000
 ```
-npm test
-```
-Backend tests are not configured yet.
 
-## Learn More
-- [React Documentation](https://reactjs.org/)
-- [Express.js Guide](https://expressjs.com/)
-- [MySQL Documentation](https://dev.mysql.com/doc/)
+## Certificate Verification
 
-### Analyzing the Bundle Size
+Each certificate has a unique certificate ID and QR code.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+When the QR code is scanned, it takes the user to the certificate verification page. The system checks the certificate ID with the database and shows the certificate information if it exists.
 
-### Making a Progressive Web App
+This makes it easier to verify certificates without having to manually check the original records.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Deployment
 
-### Advanced Configuration
+The project can be deployed using services such as Render and Vercel.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The backend requires the necessary environment variables and a MySQL database connection to work correctly after deployment.
 
-### Deployment
+## What I learned from this project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+While working on this project, I got hands-on experience with React, Node.js, Express, MySQL and REST APIs. I also worked with authentication, PDF generation, QR codes, email functionality and deploying a full-stack application.
 
-### `npm run build` fails to minify
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Some things I would like to add or improve in the future:
 
+* Better certificate templates
+* Admin dashboard
+* Different user roles
+* More customization options for certificates
+* Better mobile responsiveness
+* Digital signatures for certificates
 
+## Author
 
+**Eega Chandrika**
 
-## QR Code Verification Link
-
-The QR code verification link is: `http://10.55.47.47:3000/verify/{reference_number}`
+This project was developed as part of my academic/full-stack development work.
